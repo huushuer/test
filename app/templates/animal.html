@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{animals.F_AnimalUniqueName}}
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/animal.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "navigation.html" %}
+<!-- /header -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+<!--＊＊＊＊＊＊＊＊＊＊＊＊＊＊ショップエリア＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="map__bg__behind__grass">
+    <img class="map__fream" src="{{ url_for('static', filename='images/home_fream.png') }}" alt="green">
+</div>
+<div class="animals__wrapper">
+
+
+    <!-- <h2>{{animals.F_AnimalName}}</h2> -->
+
+    <div class="left__area">
+        <div class="map__map__area">
+            <div class="map__area">
+                <div class="map__img">
+                    <img class="new__map" src="{{ url_for('static', filename='images/map_new.png') }}" alt="map">
+
+                    <div class="map__items">
+                        <div class="animal__link __1">
+                            <a href="{{url_for('animal', F_AnimalUniqueID = '0003')}}" class="delayed__link">
+                                <img src="{{ url_for('static', filename='images/gif_img/kapibara/3.png') }}"
+                                    data-gif="{{ url_for('static', filename='images/gif/kapibara.gif') }}"
+                                    alt="kapibara" id="map__tag__1" class="current">
+                            </a>
+                        </div>
+                        <div class="animal__link __2">
+                            <a href="{{url_for('animal', F_AnimalUniqueID = '0004')}}">
+                                <img src="{{ url_for('static',filename='images/gif_img/chicken/1.png') }}"
+                                    data-gif="{{ url_for('static', filename='images/gif/chicken.gif') }}" alt="hiyoko"
+                                    id="map__tag__2" class="current">
+                            </a>
+                        </div>
+                        <div class="animal__link __3">
+                            <a href="{{url_for('animal', F_AnimalUniqueID = '0001')}}">
+                                <img src="{{ url_for('static', filename='images/gif_img/panda/1.png') }}"
+                                    data-gif="{{ url_for('static', filename='images/gif/panda.gif') }}" alt="panda"
+                                    id="map__tag__3" class="current">
+                            </a>
+                        </div>
+                        <div class="animal__link __4">
+                            <a href="{{url_for('animal', F_AnimalUniqueID = '0002')}}">
+                                <img src="{{ url_for('static', filename='images/gif_img/sheep/1.png') }}"
+                                    data-gif="{{ url_for('static', filename='images/gif/sheep.gif') }}" alt=" sheep"
+                                    id="map__tag__4" class="current">
+                            </a>
+                        </div>
+                        <div class="animal__link __5">
+                            <a href="{{url_for('animal', F_AnimalUniqueID = '0005')}}">
+                                <img src="{{ url_for('static', filename='images/gif_img/dog/1.png') }}"
+                                    data-gif="{{ url_for('static', filename='images/gif/dog.gif') }}" alt=" dog"
+                                    id="map__tag__5" class="current">
+                            </a>
+                        </div>
+                        <div class="animal__link __6">
+                            <a href="{{url_for('shop')}}">
+                                <img src="{{ url_for('static', filename='images/gif_img/shop/shop.png') }}"
+                                    data-gif="{{ url_for('static', filename='images/gif/shop.gif') }}" alt=" shop"
+                                    id="map__tag__6" class="current">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="right__area">
+        <div class="right__area__contents">
+            <div class="right__area__img">
+                <img src="{{url_for('static',filename='images/' ~ animals.F_ImageName)}}" alt="">
+            </div>
+
+            <div class="right__area__procedure">
+                <!-- <h2>{{animals.F_AnimalUniqueID}}</h2> -->
+                <h2>名前：{{animals.F_AnimalUniqueName}}</h2>
+                <!-- <h2>{{animals.F_AnimalID}}</h2> -->
+                <!-- <h2>{{animals.F_ImageName}}</h2> -->
+                <h2>特徴：{{animals.F_ImageEX}}</h2>
+                <h2>性別：{% if animals.F_Gender == '1' %}男性
+                    {% elif animals.F_Gender == '2' %}女性
+                    {% endif %}</h2>
+                <h2>年齢：{{animals.F_Age}}</h2>
+                <h2>趣味：{{animals.F_Hobby}}</h2>
+            </div>
+        </div>
+
+        <div class="right__area__procedure__text">
+            <p>{{animals.F_AnimalEx}}</p>
+        </div>
+
+        <div class="right__area__procedure__text_2">
+            <span class="right__area__procedure__text_2-title">飼育員から一言</span>
+            <p>{{animals.F_AnimalComment}}</p>
+            <p class="tantousya">(担当者：{{animals.F_AnimalManager}})</p>
+        </div>
+
+        <div class="right__area__live">
+            <a href="{{url_for('feed_live')}}">
+                <p><svg t="1739950709155" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="5228" width="30" height="30">
+                        <path
+                            d="M683.38086969 207.3043475H804.17391313A158.60869594 158.60869594 0 0 1 962.78260906 365.91304344v459.13043437a158.60869594 158.60869594 0 0 1-158.60869594 158.60869594H219.82608687A158.60869594 158.60869594 0 0 1 61.21739094 825.04347781V365.91304344A158.60869594 158.60869594 0 0 1 219.82608687 207.3043475h116.36869594L273.79478281 89.34956562A33.39130406 33.39130406 0 0 1 332.81391312 58.12869594L411.74260906 207.3043475h196.09043438L686.76173937 58.12869594a33.39130406 33.39130406 0 0 1 59.06086969 31.22086969L683.38086969 207.3043475zM219.82608687 274.08695656A91.82608688 91.82608688 0 0 0 128 365.91304344v459.13043437A91.82608688 91.82608688 0 0 0 219.82608687 916.86956562h584.34782625a91.82608688 91.82608688 0 0 0 91.82608688-91.82608781V365.91304344A91.82608688 91.82608688 0 0 0 804.17391313 274.08695656H219.82608687z"
+                            p-id="5229" fill="#ffffff"></path>
+                        <path
+                            d="M353.39130406 465.37739094v276.89739187a54.26086969 54.26086969 0 0 0 82.18434844 46.53913031l230.73391312-138.44869593a54.26086969 54.26086969 0 0 0 0-93.07826063L435.5756525 418.83826063A54.26086969 54.26086969 0 0 0 353.39130406 465.37739094z m260.66086969 138.44869593L420.17391312 720.15304344v-232.65391313l193.87826063 116.32695657z"
+                            p-id="5230" fill="#ffffff"></path>
+                    </svg>小動物たちは何をしているかな？</p>
+            </a>
+
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const gifTags = document.querySelectorAll('.animal__link .current');
+
+    gifTags.forEach(tag => {
+        const staticSrc = tag.src;
+        const gifSrc = tag.dataset.gif;
+
+        tag.addEventListener('mouseenter', () => {
+            tag.src = gifSrc;
+        });
+
+        tag.addEventListener('mouseleave', () => {
+            tag.src = staticSrc;
+        });
+    });
+</script>
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊footer＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+<!-- /footer -->
+{% endblock %}

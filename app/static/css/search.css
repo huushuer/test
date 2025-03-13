@@ -1,0 +1,143 @@
+@charset "utf-8";
+
+html,
+body {
+  background-color: #f0fff4;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Kiwi Maru";
+  font-size: 20px;
+  color: #333;
+}
+
+.search__bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.search__contents {
+  padding-top: 160px;
+  text-align: center;
+}
+
+.search__contents h1 {
+  display: block;
+  text-align: center;
+  margin-bottom: 120px;
+  font-size: 42px;
+  font-weight: 800;
+  color: #568d57;
+  text-shadow: 2px 2px 3px rgba(64, 64, 64, 0.5);
+}
+
+/* .search__wrapper {
+  width: auto;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+
+} */
+
+.search__items__wrapper {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  margin-bottom: 40px;
+  align-items: center;
+  background-color: #ffffff;
+  width: 800px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px rgba(44, 44, 44, 0.274);
+}
+
+.search__left {
+  width: 200px;
+  height: auto;
+  text-align: center;
+}
+
+.goods__img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.item__name {
+  margin-bottom: 26px;
+}
+
+.item__price {
+  margin-bottom: 26px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.calc_price {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  margin-top: -5px;
+  border: 1.4px solid rgba(53, 53, 53, 0.651);
+  border-radius: 3px;
+  padding: 4px 20px 4px 8px;
+  background: url('data:image/svg+xml;utf8,<svg fill="gray" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>')
+    no-repeat right 10px center;
+  background-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.calc_price:hover {
+  border: 1.4px solid rgba(129, 129, 129, 0.651);
+}
+
+.search__sum__price {
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.search__continue {
+  text-align: center;
+  margin-left: 400px;
+  margin-bottom: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.6s ease, opacity 0.4s ease;
+}
+
+.continue::before {
+  content: "←";
+  margin-right: 8px;
+  font-size: 24px;
+  position: relative;
+  top: 2px;
+}
+
+.search__continue:hover {
+  opacity: 0.7;
+}
+
+.search__button {
+  display: block;
+  color: #ffffff;
+  background-color: #84b782;
+  box-shadow: 1px 1px 8px 2px rgba(64, 64, 64, 0.3);
+  border-radius: 36px;
+  padding: 17px 66px;
+  font-size: 20px;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  cursor: pointer;
+  margin: 0 auto;
+  width: 243px;
+}
+.search__button:hover {
+  opacity: 0.7;
+}

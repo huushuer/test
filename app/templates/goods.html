@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}
+商品
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "navigation.html" %}
+<!-- /header -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/goods.css') }}">
+{% endblock %}
+
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+
+<!--＊＊＊＊＊＊＊＊＊＊＊＊＊＊ショップエリア＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<!-- <div class="goods__bg">
+    <img src="{{ url_for('static', filename='home_fream_up.png') }}" alt="">
+
+</div> -->
+<div class="goods__wrapper">
+    <img src="../static/images/home_fream_up.png" alt="" class="goods__bg" style="pointer-events: none;">
+    <div class="goods__contents">
+        <h1>{{goods.F_GoodsName}}</h1>
+        <div class="wrapper__area">
+            <div class="left__area">
+                <div class="left__area__img">
+                    <img src="{{url_for('static',filename='images/' ~ goods.F_ImageName)}}" alt="" class="goods__img">
+                </div>
+
+            </div>
+            <div class="right__area">
+                <div class="right__area__procedure">
+                    <h2>{{goods.F_GoodsName}}</h2>
+                    <h3>&yen;{{goods.F_GoodsPrice}}</h3>
+                    <div class="right__area__procedure__text">
+                        <p>{{goods.F_ProductEx}}</p>
+                    </div>
+                    {#<form action="{{url_for('cart', goodsID = goods.F_GoodsID)}}" method="POST">#}
+                        <form action="{{url_for('goods', goodsID = goods.F_GoodsID)}}" method="POST">
+                            <select id="" class="item__select" name="flask_qty">
+                                <option value="">数量を選択</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <button class="cart__button" style="height: 60px;">カートに入れる</button>
+                        </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊footer＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<!-- {% include "footer.html" %} -->
+<!-- /footer -->
+{% endblock %}

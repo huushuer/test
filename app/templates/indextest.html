@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+</head>
+
+<body>
+    <div class="loading">
+
+    </div>
+
+    <header class="header">
+        <img src="images/map.png" alt="">
+        <a class="animal" href="kapibara.html">
+            <img class="animal__image" src="images/kapibara3.PNG" alt="">
+            <img class="animal__gif" src="images/kapibara.GIF" alt="">
+        </a>
+    </header>
+
+    <script>
+        const gif = document.querySelector('.kapibara__gif');
+        const staticGif = 'images/kapibara.GIF';
+        const animatedGif = 'images/kapibara.GIF';
+
+        gif.addEventListener('mouseover', () => {
+            gif.src = '';
+            setTimeout(() => {
+                gif.src = animatedGif;
+            }, 0);
+        });
+
+        gif.addEventListener('mouseleave', () => {
+            gif.src = staticGif;
+        });
+    </script>
+
+
+</body>
+
+</html>

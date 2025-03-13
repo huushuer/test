@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}
+グッズショップ
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+{% endblock %}
+
+{% block content %}
+
+{% include 'navigation.html' %}
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+<div class="top-image">
+    <img src="../static/images/home_fream_up.png" alt="">
+    <h1>グッズショップ</h1>
+    <p><br><br>Wlecome <br><br>HAL ZOO goods shop</p>
+</div>
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ top_navi ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="animal-nav">
+    <a href="#0001">パンダ</a>
+    <a href="#0002">羊</a>
+    <a href="#0003">カピバラ</a>
+    <a href="#0004">ひよこ</a>
+    <a href="#0005">いぬ</a>
+</div>
+
+
+
+
+<div class="content">
+    {% for animal in animals %}
+    <div class="series" id="{{ animal.F_AnimalID }}" data-animal="{{ animal.F_AnimalName|lower }}">
+
+        {% if animal.F_AnimalName == 'パンダ' %}
+        <div class="panda-container">
+            <img src="../static/images/clibing_panda.png" alt="パンダ背景">
+        </div>
+        <div class="panda-container-down">
+            <img src="../static/images/shop_lie_down_panda.png" alt="パンダ背景-2"
+                style="position: absolute;  bottom: 0; left: 0; width: 150px;">
+        </div>
+
+        {% endif %}
+
+        {% if animal.F_AnimalName == '羊' %}
+        <div class="sheep-container">
+            <img src="../static/images/shop_leaf_sheep.png" alt="">
+        </div>
+        <div class="sheep-container-down">
+            <img src="../static/images/lazy_sheep.png" alt=""
+                style="position: absolute; bottom: -130px; left: 900px; width: 400px;margin-bottom: 90px;">
+        </div>
+        {% endif %}
+
+        <h3>{{ animal.F_AnimalName }}</h3>
+        <div class=" goods-grid">
+            {% for good in goods %}
+            {% if good.F_AnimalID == animal.F_AnimalID %}
+            <div class="shop__item">
+                <img src="{{ url_for('static', filename='images/' ~ good.F_ImageName) }}" alt="">
+                <h2 class="shop_goods_name">{{ good.F_GoodsName }}</h2>
+                <p class="shop_p">{{ good.F_ProductEx }}</p>
+                <p>¥{{ good.F_GoodsPrice }}</p>
+                <a href="{{ url_for('goods', goodsID=good.F_GoodsID) }}">商品詳細ページ</a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% if animal.F_AnimalName == 'ひよこ' %}
+        <img src="../static/images/shop_chickenx3_head.png" alt="ひよこした" style="width: 50%; margin-top: 40px;">
+        <div class="chicken-container">
+            <img src="../static/images/shop_chickenx1_bg.png" alt="ひよこ背景"
+                style="position: absolute; bottom: 550px; left: 0px; width: 220px;">
+        </div>
+        <div class="chicken-container_2">
+            <img src="../static/images/shop_love_chicken.png" alt="ひよこ背景-2"
+                style="position: absolute; bottom: 200px; left: 950px; width: 220px;">
+        </div>
+
+        {% endif %}
+        {% if animal.F_AnimalName == 'カピバラ' %}
+        <img src=" ../static/images/shop_buddha_kapibara_bg.png" alt="カピバラ背景"
+            style="position: absolute; bottom: 0; left: 0; width: 200px;">
+        <img src="../static/images/shop_kapibarax1_bg.png" alt="カピバラ行列1"
+            style="position: absolute; bottom: 570px; left: 0; width: 100px;">
+        <img src="../static/images/shop_kapibarax1_bg.png" alt="カピバラ行列2"
+            style="position: absolute; bottom: 570px; left: 170px; width: 100px;">
+        <img src="../static/images/shop_kapibarax1_bg.png" alt="カピバラ行列3"
+            style="position: absolute; bottom: 570px; left: 340px; width: 100px;">
+        <img src="../static/images/shop_kapibarax1_bg.png" alt="カピバラ行列4"
+            style="position: absolute; bottom: 570px; left:510px; width: 100px;">
+        <img src="../static/images/shop_kapibarax1_bg.png" alt="カピバラ行列5"
+            style="position: absolute; bottom: 570px; left: 680px; width: 100px;">
+        <img src="../static/images/shop_kapibarax1_bg.png" alt="カピバラ行列6"
+            style="position: absolute; bottom: 570px; left: 850px; width: 100px;">
+        <img src="../static/images/shop_kapibarax1_bg.png" alt="カピバラ行列7"
+            style="position: absolute; bottom: 570px; left: 1020px; width: 100px;">
+
+        {% endif %}
+
+        {% if animal.F_AnimalName == 'いぬ' %}
+        <div class="dog-container">
+            <img src="../static/images/shop_dogx3_head.png" alt="いぬ背景">
+        </div>
+        <div class="dog-container-2">
+            <img src="../static/images/say_hi_dog.png" alt="dog-top-background"
+                style="position: absolute; bottom: 650px; left: 0px; width: 220px;">
+        </div>
+        <div class="dog-foot">
+            <img src="../static/images/shop_foot.png" alt="dog-foot"
+                style="position: absolute; bottom: 0px; left: 0px; width: 100%;z-index: -1;">
+        </div>
+        {% endif %}
+    </div>
+    {% if not loop.last %}
+    {% endif %}
+    <hr class="dashed-divider">
+    {% endfor %}
+</div>
+
+
+<img class="bottom-image" src="../static/images/home_fream_down.png" alt="">
+
+<!-- /header -->
+
+
+
+
+
+
+<!-- /footer -->
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}
+注文確定
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "navigation.html" %}
+<!-- /header -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/confirm.css') }}">
+{% endblock %}
+
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊タイトル＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="cart__wrapper">
+    <img src="../static/images/home_fream_up.png" alt="" class="cart__bg" style="pointer-events: none;">
+
+    <div class="cart__contents">
+        <h1>購入確認ページ</h1>
+        <!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊カート＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+        {% for cart_good in cart_goods %}
+        <form action="{{url_for('confirm')}}" , method="POST">
+            <input type="hidden" value="update" name="next">
+            <div class="cart__wrapper">
+                <div class="cart__items__wrapper">
+                    <div class="cart__left">
+                        <div class="item__image">
+                            <img src="{{ url_for('static', filename='images/' ~ cart_good.F_ImageName) }}" alt=""
+                                class="goods__img">
+                        </div>
+                    </div>
+
+                    <div class="cart__right">
+                        <div class="item__name">
+                            <h2>名称：{{ cart_good.F_GoodsName }}</h2>
+                            <input type="hidden" value="{{ cart_good.F_GoodsID }}" name="item_id">
+                        </div>
+                        <div class="item__price">
+                            <h2>単価：￥{{ cart_good.F_GoodsPrice }}</h2>
+                            <input type="hidden" value="update" name="item__price">
+                        </div>
+                        <div class="item__count">
+                            <h2>個数：{{cart_good.F_GoodsQTY}}</h2>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                {% endfor %}
+                <div class="cart__price__wrapper">
+                    <!-- <div class="cart__image">
+                        <img src="" alt="">
+                    </div> -->
+                    <div class="cart__continue">
+                        <a href="{{url_for('shop')}}" class="continue">買い物を続ける</a>
+                    </div>
+                    <div class="cart__sum__price">
+                        {# jquery #}
+                        <h2>合計金額￥：<span id="sum_price"></span>
+                        </h2>
+                    </div>
+
+                    <div class="cart__button">
+                        <button type="submit" value="check" name="button">購入</button>
+                    </div>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <p style="color: red; margin-top: 10px;">{{message}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        sumSelectedScore();
+    });
+
+    function sumSelectedScore() {
+        let totalScore = 0;
+
+        $('.item__price h2').each(function () {
+            const priceText = $(this).text().replace('単価：￥', '').trim();
+            const price = parseInt(priceText, 10);
+
+            const quantityText = $(this).closest('.cart__right').find('.item__count h2').text().replace('個数：', '').trim();
+            const quantity = parseInt(quantityText, 10);
+
+            totalScore += price * quantity;
+        });
+
+        $('#sum_price').text(totalScore);
+    }
+</script>
+
+
+
+{% endblock %}

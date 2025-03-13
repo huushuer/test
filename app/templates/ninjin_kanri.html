@@ -1,0 +1,342 @@
+{% extends "base.html" %}
+
+{% block title %}
+人参通貨管理
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ninjin_kanri.css') }}">
+{% endblock %}
+<!-- /header -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊装飾＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<!-- /装飾 -->
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊タイトル＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="main">
+    {% include "navigation.html" %}
+    <h1 class="main__title">ニンジン通貨管理</h1>
+    <p class="margin"></p>
+    <div class="kanri__wrapper">
+        {# 左段 #}
+        <div class="wrapper__left">
+            <div class="left__contents">
+                {% if session.get('child_account') %}
+                <input type="hidden" id="child-account">
+                <p id="r0-link">ニンジン情報</p>
+                <p id="r3-link">購入履歴</p>
+                {% else %}
+                <p id="r0-link">ニンジン情報</p>
+                <p id="r1-link">子供アカウントに付与</p>
+                <p id="r2-link">ニンジン通貨購入</p>
+                <p id="r3-link">購入履歴</p>
+                {% endif %}
+            </div>
+        </div>
+
+        {# 右段 #}
+        <div class="wrapper__right">
+            <div class="right__top">
+                <div class="rtop__img">
+                    {# アカウントイメージ #}
+                    <img src="{{ url_for('static', filename='images/icon/' ~ session.get('icon')) }}" alt="">
+                </div>
+                <div class="rtop__name">
+                    <p>{{session.get('name')}}</p>
+                </div>
+            </div>
+            <div class="right__bottom">
+                {# にんじん基本情報※右0 #}
+                <div class="right__0" id="right__0">
+                    <div class="r0_contents">
+                        <div class="r0__current">
+                            <h2>現在のにんじん</h2>
+                            {{ninjin}}
+                        </div>
+                        <div class="r0__history">
+
+                            {# ニンジン購入履歴をfor文で出す #}
+                            {%if not ninjin_historys%}
+                            <p class="none_info">にんじん履歴がありません</p>
+                            <img src="../static/images/shop_pandax1_bg.png" alt="">
+                            {%else%}
+                            <h2>にんじん履歴</h2>
+                            <table>
+                                <thead>
+                                    <th scope="col">日付</th>
+                                    <th scope="col">概要</th>
+                                    <th scope="col">チャージ</th>
+                                    <th scope="col">支出</th>
+                                </thead>
+                                <tbody>
+                                    {% for ninjin_history in ninjin_historys %}
+                                    <tr>
+                                        <td class="table__date">
+                                            {{ninjin_history.date}}
+                                        </td>
+                                        <td class="table__subject">
+                                            {{ninjin_history.subject}}
+                                        </td>
+                                        <td class="table__charge">
+                                            {{ninjin_history.charge}}
+                                        </td>
+                                        <td class="table__expence" style="color: red;">
+                                            {{ninjin_history.expence}}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {%endif%}
+                        </div>
+                    </div>
+                </div>
+                {% if not session.get('child_account') %}
+                {# 子供アカウントにニンジンを付与するページ※右1 #}
+                <div class="right__1" id="right__1">
+                    <div class="r1__contents">
+                        {# アコーディオンを作成 #}
+                        {# https://zenweb.info/frontend/accordion-panel/ #}
+                        <ul class="r1__accordion__list">
+                            {# for文 #}
+                            {%if not child_infos%}
+                            <p class="none_info">子供アカウントがありません</p>
+                            <img src="../static/images/shop_pandax1_bg.png" alt="">
+                            {%endif%}
+                            {% for child_info in child_infos %}
+                            <li class="r1__accordion__item">
+                                <div class="r1__accordion__head">
+                                    <div class="r1__accordion__head__img">
+                                        {% if child_info.F_icon %}
+                                        <img src="{{ url_for('static', filename='images/icon/' ~ child_info.F_icon) }}"
+                                            alt="">
+                                        {% else %}
+                                        <img src="{{ url_for('static', filename='images/icon/default_icon.jpg') }}"
+                                            alt="">
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="r1__accordion__head__name">
+                                        <p>{{child_info.F_MemberName}}</p>
+                                    </div>
+                                </div>
+                                <div class="r1__accordion__body">
+                                    <form action="{{url_for('ninjin_kanri_r1')}}" method="POST">
+                                        <input type="hidden" value="{{child_info.F_MemberID}}" name="child_id">
+                                        <p class="r1__accordion__body__text">
+                                            🥕{{child_info.F_MemberName}}さんの残高：{{child_info.F_Carrot}}</p>
+                                        <input type="number" placeholder="付与金額を入力してください" name="child_okodukai"
+                                            id="{{child_info.F_MemberID}}" min="1" max="{{ninjin}}"
+                                            class="r1__accordion__body__inputNumber"><br>
+                                        <input type="submit" value="おこづかいをあげる" class="r1__accordion__body__submit">
+                                    </form>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {# ニンジン通貨購入ページ※右2 #}
+                <div class="right__2" id="right__2">
+                    <div class="r2__top">
+                        <p>🥕現在の残高🥕</p>
+                        <p>🥕チャージ後🥕</p>
+                        <p class="r2__current_ninjin">{{ninjin}}</p>
+                        <p id="sum_price"></p>
+                    </div>
+                    <form action="{{url_for('ninjin_kanri_r2')}}" method="POST">
+                        <input type="hidden" value="" id="updated_ninjin" name="updated_ninjin">
+                        <div class="r2__bottom">
+                            <div class="r2__form_label">
+                                <input type="radio" id="1000" name="radio_charge" value="1000" class="r2__form_radio">
+                                <label for="1000">1,000円</label>
+                            </div>
+                            <div class="r2__form_label">
+                                <input type="radio" id="2000" name="radio_charge" value="2000" class="r2__form_radio">
+                                <label for="2000">2,000円</label>
+                            </div>
+                            <div class="r2__form_label">
+                                <input type="radio" id="3000" name="radio_charge" value="3000" class="r2__form_radio">
+                                <label for="3000">3,000円</label>
+                            </div>
+                            <div class="r2__form_label">
+                                <input type="radio" id="5000" name="radio_charge" value="5000" class="r2__form_radio">
+                                <label for="5000">5,000円</label>
+                            </div>
+                            <div class="r2__form_label">
+                                <input type="radio" id="8000" name="radio_charge" value="8000" class="r2__form_radio">
+                                <label for="8000">8,000円</label>
+                            </div>
+                            <div class="r2__form_label">
+                                <input type="radio" id="10000" name="radio_charge" value="10000" class="r2__form_radio">
+                                <label for="10000">10,000円</label>
+                            </div>
+                            <input type="number" placeholder="その他の金額" class="other_charge" name="other_charge" min="0">
+                            <div class="r2__bank-info">
+                                <p>支払い手段：ねこ銀行|茶トラ支店</p>
+                                <p>△△△△△△△△△△△△|✕✕✕</p>
+                            </div>
+                            <input type="submit" value="チャージ" class="input-submit-button">
+                        </div><!-- r2__bottom -->
+                    </form>
+                </div>
+                {% endif %}
+                {# 購入履歴確認ページ※右3 #}
+                <div class="right__3" id="right__3">
+                    <div class="r3_goods_wrapper">
+                        {%if not purchase_dates%}
+                        <p class="none_info">購入履歴がありません</p>
+                        <img src="../static/images/shop_pandax1_bg.png" alt="">
+                        {%endif%}
+                        {% for purchase_date in purchase_dates %}
+                        <h3 class="r3_goods_date">{{purchase_date.date}}</h3>
+                        {% for purchase in purchases %}
+                        {% if purchase_date.date == purchase.date %}
+                        <div class="r3_goods">
+                            <div class="r3_goods_img">
+                                <img src="{{url_for('static',filename='images/' ~ purchase.F_ImageName)}}" alt="">
+                            </div>
+                            <div>
+                                <p>{{purchase.F_GoodsName}}</p>
+                            </div>
+                            <div>
+                                <p>個数：{{purchase.F_PurchaseNum}}</p>
+                            </div>
+                        </div>
+                        {% else %}
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- main -->
+
+    <!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊footer＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+    {#{% include "footer.html" %}#}
+    <!-- /footer -->
+    <script>
+        // ニンジン通貨購入ページの処理
+        // チャージ後の金額を出す
+        $(document).ready(function () {
+            var charge = 0
+            // ページ読み込み時に合計金額を計算し、表示する
+            sumAddPrice(charge);
+            $('input[name="radio_charge"]').change(function () {
+                $('.other_charge').val(''); // other_chargeの値を0にする処理を入れる
+                var charge = $(this).val();
+                sumAddPrice(charge);
+            });
+            $('input[type="number"]').change(function () {
+                $('input[name="radio_charge"]:checked').prop('checked', false); // radioのcheckを外す
+                var charge = $(this).val();
+                sumAddPrice(charge);
+            });
+        });
+        function sumAddPrice(charge) {
+            // その他の金額に入力されていた場合、radioのチェックを外し、加算しない
+            let other_charge = $('.other_charge').val();
+            let current_ninjin = $('.r2__current_ninjin').text();
+            if (other_charge > 0) {
+                // その他の金額に入力された際の処理
+                totalPrice = parseInt(current_ninjin) + parseInt(other_charge)
+                $('#sum_price').text(totalPrice);
+                $('#flask_getter_charge').val(totalPrice);
+                $('#updated_ninjin').val(totalPrice);
+            } else {
+                // radioボタンが押された際の処理
+                totalPrice = parseInt(current_ninjin) + parseInt(charge)
+                $('#sum_price').text(totalPrice);
+                $('#updated_ninjin').val(totalPrice);
+            }
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const childAccountElement = document.getElementById('child-account');
+            let childAccount = false;
+            if (childAccountElement) {
+                childAccount = childAccountElement.dataset.childAccount == 'True';
+            }
+
+            const r0Link = document.getElementById("r0-link");
+            const r1Link = document.getElementById("r1-link");
+            const r2Link = document.getElementById("r2-link");
+            const r3Link = document.getElementById("r3-link");
+
+            if (childAccount) {
+                if (r1Link) r1Link.remove();
+                if (r2Link) r2Link.remove();
+            }
+
+            // リンク削除後にcontentsを再選択
+            const contents = document.querySelectorAll("#right__0, #right__1, #right__2, #right__3");
+            const links = [r0Link, r1Link, r2Link, r3Link].filter(link => link !== null); // リンクのfilterはcontentsの再選択後に行う
+
+
+            // リンクのテキスト変更 (初期表示時のみ)
+            if (childAccount) {
+                if (r3Link) r3Link.textContent = "購入履歴";
+                if (r0Link) r0Link.textContent = "ニンジン情報";
+            } else {
+                if (r1Link) r1Link.textContent = "子供アカウントに付与";
+                if (r2Link) r2Link.textContent = "ニンジン通貨購入";
+                if (r3Link) r3Link.textContent = "購入履歴";
+                if (r0Link) r0Link.textContent = "ニンジン情報";
+            }
+
+            // const links = [r0Link, r1Link, r2Link, r3Link].filter(link => link !== null);
+            // const contents = document.querySelectorAll("#right__0, #right__1, #right__2, #right__3");
+
+            // 初期表示
+            contents.forEach((content, index) => {
+                content.hidden = index !== 0;
+            });
+            if (links[0]) links[0].style.backgroundColor = '#7EA77F';
+
+            links.forEach((link, index) => {
+                link.addEventListener('click', () => {
+                    // 色の切り替え
+                    links.forEach(l => {
+                        if (l) l.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+                    });
+                    link.style.backgroundColor = '#7EA77F';
+
+                    // 表示/非表示の切り替え
+                    contents.forEach(c => c.hidden = true);
+                    contents[index].hidden = false;
+                    console.log(contents[index])
+                });
+
+                link.addEventListener('mouseover', () => {
+                    if (link.style.backgroundColor !== 'rgb(126, 167, 127)') {
+                        link.style.backgroundColor = '#7ea77fc4';
+                    }
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    if (link.style.backgroundColor !== 'rgb(126, 167, 127)') {
+                        link.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+                    }
+                });
+            });
+        });
+
+
+        // r1アコーディオン
+        "use strict";
+
+        const accordionItems = document.getElementsByClassName("r1__accordion__item");
+        const accordionBtns = document.getElementsByClassName("r1__accordion__head");
+
+        for (let i = 0; i < accordionBtns.length; i++) {
+            accordionBtns[i].addEventListener("click", function () {
+                accordionItems[i].classList.toggle("active");
+            });
+        }
+
+    </script>
+    {% endblock %}

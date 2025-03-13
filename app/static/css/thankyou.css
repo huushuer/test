@@ -1,0 +1,42 @@
+html, body {
+    background-color: #f0fff4;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Kiwi Maru';
+    font-size: 20px;
+    color: #333;
+}
+
+.map__wrapper img {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;  
+    height: 100vh;  
+    object-fit: cover; 
+}
+
+
+.map__wrapper{
+    padding-top: 330px;
+    text-align: center;
+}
+
+.map__wrapper h2{
+    display: block;
+    text-align: center;
+    margin-bottom: 80px;
+    font-size: 42px;
+    font-weight: 800;
+    color: #568d57;
+    text-shadow: 1px 1px 3px rgba(64, 64, 64, 0.5);
+}
+
+.map__wrapper p{
+    color: #568d57;
+    font-size: 30px;
+    /* font-weight: 600; */
+    text-shadow: 1px 1px 2px rgba(64, 64, 64, 0.2);
+
+}

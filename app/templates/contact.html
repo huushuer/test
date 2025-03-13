@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block title %}
+お問い合わせ
+{% endblock %}
+
+{% block content %}
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+{% include "navigation.html" %}
+
+
+<!-- /header -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊装飾＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="home__wrapper">
+    <div class="items__1"></div>
+    <div class="items__2"></div>
+    <div class="items__3"></div>
+</div>
+<!-- /装飾 -->
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊footer＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "footer.html" %}
+<!-- /footer -->
+{% endblock %}

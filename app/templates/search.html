@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}
+カート
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "navigation.html" %}
+<!-- /header -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+{% endblock %}
+
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+
+<div class="search__wrapper">
+    <img src="../static/images/home_fream_up.png" alt="" class="search__bg" style="pointer-events: none;">
+
+    <div class="search__contents">
+        <h1>検索結果一覧</h1>
+        <!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊検索結果一覧＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+        {% for result in results %}
+        
+            <div class="search__wrapper">
+                <a href="{{ url_for('goods', goodsID=result.F_GoodsID) }}">
+                <div class="search__items__wrapper">
+                    <div class="search__left">
+                        <div class="item__image">
+                            <img src="{{ url_for('static', filename='images/' ~ result.F_ImageName) }}" alt=""
+                                class="goods__img">
+                        </div>
+                    </div>
+
+                    <div class="search__right">
+                        <div class="item__name">
+                            <h2>名称：{{ result.F_GoodsName }}</h2>
+                            <input type="hidden" value="{{ result.F_GoodsID }}" name="item_id">
+                        </div>
+                        <div class="item__price">
+                            <p>{{ result.F_ProductEx }}</p>
+                            <input type="hidden" value="update" name="item__price">
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+                {% endfor %}
+            </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+        // ページ読み込み時に合計金額を計算し、表示する
+        sumSelectedScore();
+
+        $('.calc_price').on('change', function () {
+            sumSelectedScore();
+        });
+    });
+
+    function sumSelectedScore() {
+        let totalScore = 0;
+
+        $('.calc_price').each(function () {
+            const selectedOption = $('option:selected', this);
+            const quantity = parseInt(selectedOption.val(), 10);
+            const price = parseInt(selectedOption.attr('id'), 10);
+            const totalPrice = quantity * price;
+            totalScore += totalPrice;
+        });
+
+        $('#sum_price').text(totalScore);
+    }
+
+</script>
+{% endblock %}

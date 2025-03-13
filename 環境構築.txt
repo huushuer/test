@@ -1,0 +1,9 @@
+①出来上がっている環境で以下。
+pip freeze > requirements.txt
+ 
+②取り込む環境で以下。
+pip install -r requirements.txt
+ 
+※おまけで、installをuninstallに変えれば、一括パッケージ削除。
+（自分のオリジナルの環境が壊れた時とかに使うことあり。）
+pip uninstall -r requirements.txt

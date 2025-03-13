@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+.header {
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(209, 218, 210);
+}
+
+.header img {
+    width: 100%;
+}
+
+.animal .animal__image,
+.animal .animal__gif {
+    position: fixed;
+    top: 35%;
+    left: 53%;
+    width: 120px;
+    transition: .2s ease-in-out;
+}
+
+.animal .animal__image {
+    z-index: 100;
+    opacity: 1;
+}
+
+.animal .animal__gif {
+    z-index: 50;
+    /* opacity: 0; */
+}
+
+.animal .animal__image:hover {
+    opacity: 0;
+}
+
+.animal .animal__gif:hover {
+    opacity: 1;
+}
+
+.kapibara__body {
+    background-color: rgb(160, 137, 103);
+}

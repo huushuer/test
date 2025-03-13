@@ -1,0 +1,85 @@
+.video__wrapper{
+    background-color: azure;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.video__title {
+    writing-mode: sideways-rl;
+    font-family: 'Kiwi Maru';
+    font-size: 50px;
+    position: fixed;
+    top: 10%;
+    left: 90%;
+}
+
+.video__arear{
+    width: 100%;
+    height: 80%;
+    position: fixed;
+    top: 10%;
+    left: 0;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.live__video{
+    /* background-color: blanchedalmond; */
+    width: 90%;
+    height: 100%;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #D6EAD4 0%, #D6EAD4 50%, #81B0B2 50%, #81B0B2 100%);
+}
+
+.video__image{
+    height: 10%;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+}
+.video__image img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    
+}
+.live__button{
+    position: absolute;
+    z-index: 100;
+    bottom: 229px;
+    right: 184px;
+}
+
+#forward {
+    position: absolute;
+    bottom: 52px;
+    right: 42px;
+}
+#back {
+    position: absolute;
+    bottom: -46px;
+    right: 42px;
+}
+#left {
+    position: absolute;
+    bottom: 2px;
+    right: 92px;
+}
+#right {
+    position: absolute;
+    bottom: 2px;
+    right: -7px;
+}
+
+#stop {
+    position: absolute;
+    bottom: 9px;
+    right: 37px;
+}

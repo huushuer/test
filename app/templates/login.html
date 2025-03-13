@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}
+大人ログイン画面
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "navigation.html" %}
+<!-- /header -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/iconfont.css') }}">
+{% endblock %}
+
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+
+<div class="Login__wrapper">
+    <img src="{{ url_for('static', filename='images/login_adult_bg.jpg') }}" alt="" class="background">
+    <div class="frame" style="pointer-events: none;">
+        <div class="Login__bd__image">
+            <img src="{{ url_for('static', filename='images/small_fream3.png') }}" alt="" class="small__fream">
+            <!-- <img src="{{ url_for('static', filename='images/fream_small.png') }}" alt="" class="small__fream"> -->
+
+        </div>
+        <div class="contents">
+            <h1>大人ログイン</h1>
+            <form action="{{url_for('login')}}" method="post">
+                <div class="Login__input">
+                    <label for="input-name" class="Login__name">ユーザー名</label>
+                    <div class="input-container">
+                        <span class="iconfont icon-geren"></span>
+                        <input type="text" id="input-name" class="Login__name__input" name="flask_username" required>
+                    </div>
+                </div>
+                <div class="Login__input">
+                    <label for="input-box" class="Login__Pass">パスワード</label>
+                    <div class="input-container">
+                        <span class="iconfont icon-suo"></span>
+                        <input type="password" id="input-box" class="Login__pass__input" name="flask_userpassword"
+                            required>
+                    </div>
+
+                </div>
+                <div class="check__box">
+                    <label for="check-box">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">ログイン状態を保存する</label>
+
+                    </label>
+                </div>
+                <br>
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p style="color: red;">{{message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <div class="Login__button">
+                    <button type="submit" class="Login__submit">ログイン</button>
+                </div>
+                <div class="Login__links">
+                    <a href="{{url_for('child_register')}}">パスワードをお忘れの方</a>
+                </div>
+                <div class="Login__links">
+                    <a href="{{url_for('register_member')}}">新規作成</a> |
+                    <a href="{{url_for('child_login')}}">子供用ページ</a>
+                </div>
+
+                <img src="{{ url_for('static', filename='images/login_child.png') }}" alt="" class="form__girl">
+
+
+
+
+
+            </form>
+
+
+
+            <div class="image__under__grass">
+                <img src="{{ url_for('static', filename='images/login_fream_bottom.png') }}" alt="">
+
+            </div>
+            <div class="image__white__grass">
+                <img src="{{ url_for('static', filename='images/login_white_grass.png') }}" alt="">
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+</div><!-- div classのクラス名とformのactionを#から適切なものに変更するのが必要 -->
+
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊装飾＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="home__wrapper">
+    <div class="items__1"></div>
+    <div class="items__2"></div>
+    <div class="items__3"></div>
+</div>
+<!-- /装飾 -->
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊タイトル＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="map__wrapper">
+</div>
+<!-- /タイトル -->
+
+<!-- /ホームページ -->
+
+
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊footer＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<!-- {% include "footer.html" %} -->
+<!-- /footer -->
+{% endblock %}

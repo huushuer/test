@@ -1,0 +1,27 @@
+<footer class="footer">
+    <div class="footer__wrapper">
+        <div class="footer__navigation">
+            <ul>
+                <li><a href="{{url_for('usage_policy')}}">利用規約</a></li>
+                <li><a href="{{url_for('contact')}}">お問い合わせ</a></li>
+                <li><a href="{{url_for('index')}}">マップ</a></li>
+                <li><a href="{{url_for('login')}}">ログイン</a></li>
+                <li><a href="{{url_for('mypage')}}">マイページ</a></li>
+                <li><a href="{{url_for('shop')}}">グッズショップ</a></li>
+                <li><a href="{{url_for('end_session')}}">ログアウト</a></li>
+            </ul>
+        </div>
+        <div class="footer__copyright">
+            <p>
+                <span>
+                    &copy;2025 HAL Brian Slice.
+                </span>
+            </p>
+        </div>
+        <div class="footer__logo">
+            <a href="{{url_for('index')}}">
+                <img src="{{ url_for('static', filename='images/shop_buddha_kapibara_bg.png') }}" alt="logo">
+            </a>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}
+大人会員登録画面
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "navigation.html" %}
+<!-- /header -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register_member.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/iconfont.css') }}">
+{% endblock %}
+
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+
+<div class="Login__wrapper">
+    <img src="{{ url_for('static', filename='images/login_adult_bg.jpg') }}" alt="" class="background">
+    <div class="frame" style="pointer-events: none;">
+        <div class="Login__bd__image">
+            <img src="{{ url_for('static', filename='images/big_fream2.png') }}" alt="" class="big__fream">
+            <!-- <img src="{{ url_for('static', filename='images/fream_small.png') }}" alt="" class="small__fream"> -->
+
+        </div>
+        <div class="contents">
+            <h1>大人新規会員登録</h1>
+            <form action="{{url_for('register_member')}}" method="post">
+                <div class="Login__input">
+                    <label for="input-name" class="Login__name">ユーザー名</label>
+                    <div class="input-container">
+                        <span class="iconfont icon-geren"></span>
+                        <input type="text" id="input-name" class="Login__name__input" name="flask_username" required>
+                    </div>
+
+                </div>
+                <div class="Login__input">
+                    <label for="input-tel" class="Login__tel">携帯電話</label>
+                    <div class="input-container">
+                        <span class="iconfont"><svg t="1738320497569" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="1593" width="32px">
+                                <path
+                                    d="M820.409449 797.228346q0 25.19685-10.07874 46.866142t-27.716535 38.299213-41.322835 26.204724-50.897638 9.574803l-357.795276 0q-27.212598 0-50.897638-9.574803t-41.322835-26.204724-27.716535-38.299213-10.07874-46.866142l0-675.275591q0-25.19685 10.07874-47.370079t27.716535-38.80315 41.322835-26.204724 50.897638-9.574803l357.795276 0q27.212598 0 50.897638 9.574803t41.322835 26.204724 27.716535 38.80315 10.07874 47.370079l0 675.275591zM738.771654 170.330709l-455.559055 0 0 577.511811 455.559055 0 0-577.511811zM510.992126 776.062992q-21.165354 0-36.787402 15.11811t-15.622047 37.291339q0 21.165354 15.622047 36.787402t36.787402 15.622047q22.173228 0 37.291339-15.622047t15.11811-36.787402q0-22.173228-15.11811-37.291339t-37.291339-15.11811zM591.622047 84.661417q0-8.062992-5.03937-12.598425t-11.086614-4.535433l-128 0q-5.03937 0-10.582677 4.535433t-5.543307 12.598425 5.03937 12.598425 11.086614 4.535433l128 0q6.047244 0 11.086614-4.535433t5.03937-12.598425z"
+                                    p-id="1594" fill="#6b966a"></path>
+                            </svg></span>
+                        <input type="tel" id="input-tel" class="Login__tel__input" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+                            name="flask_tel" placeholder="000-0000-0000" required>
+                    </div>
+
+                    <!-- pattern属性で入力形式の制限をしました -->
+                </div>
+                <div class="Login__input">
+                    <label for="input-box" class="Login__Pass">パスワード</label>
+                    <div class="input-container">
+                        <span class="iconfont icon-suo"></span>
+                        <input type="password" id="input-box" class="Login__pass__input" name="flask_pass" required>
+                    </div>
+
+                    <div class="input-container">
+                        <span class="iconfont icon-suo"></span>
+                        <input type="password" id="input-box" class="Login__pass__input" name="flask_pass_confirm"
+                            placeholder="確認のため、2回を入力してくだい" required>
+                    </div>
+
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <p style="color: red;">{{message}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <div class="Login__button">
+                        <button type="submit" class="Login__submit" style="height: 60px;">会員登録</button>
+                    </div>
+
+                    <div class="Login__links">
+                        <a href="{{url_for('login')}}">ログイン</a> |
+                        <a href="{{url_for('child_login')}}">子供用ページ</a>
+                    </div>
+                </div>
+
+                <img src="{{ url_for('static', filename='images/login_child.png') }}" alt="" class="form__girl">
+
+
+
+
+
+            </form>
+
+
+
+            <div class="image__under__grass">
+                <img src="{{ url_for('static', filename='images/login_fream_bottom.png') }}" alt="">
+
+            </div>
+            <div class="image__white__grass">
+                <img src="{{ url_for('static', filename='images/login_white_grass.png') }}" alt="">
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+</div><!-- div classのクラス名とformのactionを#から適切なものに変更するのが必要 -->
+
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊装飾＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="home__wrapper">
+    <div class="items__1"></div>
+    <div class="items__2"></div>
+    <div class="items__3"></div>
+</div>
+<!-- /装飾 -->
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊タイトル＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="map__wrapper">
+</div>
+<!-- /タイトル -->
+
+<!-- /ホームページ -->
+
+
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊footer＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<!-- {% include "footer.html" %} -->
+<!-- /footer -->
+{% endblock %}

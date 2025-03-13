@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ライブ配信サイト</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <!-- Alpine.js読み込み -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+</head>
+
+<body class=" move-order appear">
+
+    <div class="animation-bg">
+        <div class="animation-bg-element"></div>
+        <div class="animation-bg-element"></div>
+        <div class="animation-bg-element"></div>
+        <div class="animation-bg-element"></div>
+        <div class="animation-bg-element"></div>
+        <div class="animation-bg-element"></div>
+        <div class="animation-bg-element"></div>
+        <div class="animation-bg-element"></div>
+        <div class="animation-bg-element"></div>
+        <div class="animation-bg-element"></div>
+    </div>
+
+
+
+    <script src="{{ url_for('static', filename='js/nav.js') }}"></script>
+
+    <script>
+        (function ($) {
+            'use strict';
+            $(window).on('load', function () {
+                $('body').addClass('appear');
+            });
+            // バーガーメニューの開閉
+            $('.c-menu-btn').click(function () {
+                $(this).toggleClass('is-open');
+                $(this).siblings('.c-menu').toggleClass('is-open');
+                $('.black-bg').toggleClass('is-open');
+            });
+        })(jQuery);
+    </script>
+
+    <script>
+        document.querySelectorAll('.delayed__link').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault(); // 阻止默认跳转行为
+
+                const targetUrl = this.href; // 获取目标 URL
+
+                // 添加加载效果（可选）
+                this.style.pointerEvents = 'none'; // 禁用点击
+                this.style.opacity = '0.6'; // 视觉反馈
+
+                // 延迟 1 秒后跳转
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 1000); // 延迟时间（以毫秒为单位）
+            });
+        });
+    </script>
+</body>
+
+</html>

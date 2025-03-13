@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/animal_tag.js') }}"></script>
+<script src="{{ url_for('static', filename='js/loadingAnimation.js') }}"></script>
+
+{% endblock %}
+
+{% block title %}
+ホームページ
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ローディング画面＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+<div class="loading" id="splash">
+    <div id="splash_logo">
+        <img class="loading__logo fadeUp" src="{{ url_for('static', filename='images/shop_buddha_kapibara_bg.png') }}"
+            alt="">
+    </div>
+</div>
+
+<!-- /ローディング画面 -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+{% include 'navigation.html' %}
+
+<!-- /header -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊マップ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<article class="map__wrapper" id="mainContent" style="display: none;">
+    <div class="map__map__area">
+        <div class="map__bg__behind">
+            <div class="map__bg__behind__grass">
+                <img class="map__fream" src="{{ url_for('static', filename='images/home_fream.png') }}" alt="green">
+            </div>
+        </div>
+        <div class="map__bg__frount">
+            <div class="map__bg__frount__cloud">
+                <img src="{{ url_for('static', filename='images/cloud_1.png') }}" alt="cloud">
+            </div>
+            <!-- <img class="map__fream" src="{{ url_for('static', filename='images/home_fream_grass.png') }}"
+                alt="white grass"> -->
+        </div>
+
+        <div class="map__area">
+            <div class="map__img">
+                <img class="new__map" src="{{ url_for('static', filename='images/map_new.png') }}" alt="map">
+
+                <div class="map__items">
+                    <div class="animal__link __1">
+                        <a href="{{url_for('animal', F_AnimalUniqueID = '0003')}}" class="delayed__link">
+                            <img src="{{ url_for('static', filename='images/gif_img/kapibara/3.png') }}"
+                                data-gif="{{ url_for('static', filename='images/gif/kapibara.gif') }}" alt="kapibara"
+                                id="map__tag__1" class="current">
+                        </a>
+                    </div>
+                    <div class="animal__link __2">
+                        <a href="{{url_for('animal', F_AnimalUniqueID = '0004')}}">
+                            <img src="{{ url_for('static',filename='images/gif_img/chicken/1.png') }}"
+                                data-gif="{{ url_for('static', filename='images/gif/chicken.gif') }}" alt="hiyoko"
+                                id="map__tag__2" class="current">
+                        </a>
+                    </div>
+                    <div class="animal__link __3">
+                        <a href="{{url_for('animal', F_AnimalUniqueID = '0001')}}">
+                            <img src="{{ url_for('static', filename='images/gif_img/panda/1.png') }}"
+                                data-gif="{{ url_for('static', filename='images/gif/panda.gif') }}" alt="panda"
+                                id="map__tag__3" class="current">
+                        </a>
+                    </div>
+                    <div class="animal__link __4">
+                        <a href="{{url_for('animal', F_AnimalUniqueID = '0002')}}">
+                            <img src="{{ url_for('static', filename='images/gif_img/sheep/1.png') }}"
+                                data-gif="{{ url_for('static', filename='images/gif/sheep.gif') }}" alt=" sheep"
+                                id="map__tag__4" class="current">
+                        </a>
+                    </div>
+                    <div class="animal__link __5">
+                        <a href="{{url_for('animal', F_AnimalUniqueID = '0005')}}">
+                            <img src="{{ url_for('static', filename='images/gif_img/dog/1.png') }}"
+                                data-gif="{{ url_for('static', filename='images/gif/dog.gif') }}" alt=" dog"
+                                id="map__tag__5" class="current">
+                        </a>
+                    </div>
+                    <div class="animal__link __6">
+                        <a href="{{url_for('shop')}}">
+                            <img src="{{ url_for('static', filename='images/gif_img/shop/shop.png') }}"
+                                data-gif="{{ url_for('static', filename='images/gif/shop.gif') }}" alt=" shop"
+                                id="map__tag__6" class="current">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</article>
+
+
+<div class="footer__copyright">
+    <p>
+        <span>
+            &copy;2025 HAL Brian Slice.
+        </span>
+    </p>
+</div>
+<!-- /マップ -->
+
+<script>
+    const gifTags = document.querySelectorAll('.animal__link .current');
+
+    gifTags.forEach(tag => {
+        const staticSrc = tag.src;
+        const gifSrc = tag.dataset.gif;
+
+        tag.addEventListener('mouseenter', () => {
+            tag.src = gifSrc;
+        });
+
+        tag.addEventListener('mouseleave', () => {
+            tag.src = staticSrc;
+        });
+    });
+</script>
+
+
+
+<!-- /ホームページ -->
+
+{% endblock %}

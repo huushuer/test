@@ -1,0 +1,11 @@
+/* 【M_ANIMAL】 */
+ALTER TABLE M_ANIMAL RENAME COLUMN F_AnPhotoStorage TO F_ImageName
+ALTER TABLE M_ANIMAL RENAME COLUMN F_AnimalOverview TO F_ImageEx
+
+/* 【M_GOODS】 */
+ALTER TABLE M_ANIMAL RENAME COLUMN F_ImageStorage TO F_ImageName
+ALTER TABLE M_ANIMAL RENAME COLUMN F_ProductDescript TO F_goodsEx
+
+/* 【T_Cart】 */
+ALTER TABLE T_Cart RENAME COLUMN F_GoodsQuantity TO F_GoodsQTY
+ 

@@ -1,0 +1,397 @@
+@charset "utf-8";
+
+/* Yusei Magic */
+@import url("https://fonts.googleapis.com/css2?family=Bonbon&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Yusei+Magic&display=swap");
+/* Kiwi Maru */
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@100..900&display=swap");
+
+/* @font-face {
+  font-family: "UD デジタル 教科書体";
+  src: url("../fonts/UDDigiKyokashoN-B.ttc") format("UD デジタル 教科書体");
+  font-weight: normal;
+  font-style: normal;
+} */
+
+/* HTML 和 body 设置 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  overflow-x: hidden;
+  /* font-family: "M PLUS 2", serif; */
+}
+
+.main__title h1 {
+  /* h1 */
+  font-family: "Kiwi Maru";
+  font-weight: bold;
+  font-size: 6em;
+  color: #248738;
+  text-shadow: 2px 2px 6px rgb(255, 255, 255), -2px -2px 6px rgb(255, 255, 255);
+  text-align: center;
+  padding-top: 100px;
+  margin-bottom: 50px;
+}
+
+.change-icon {
+  width: 40%;
+  height: auto;
+  background-color: rgb(255, 255, 255);
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px rgba(44, 44, 44, 0.274);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.user_data {
+  margin-left: 20px;
+  margin-bottom: 50px;
+}
+
+.user_data2 {
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.user_data h2,
+.user_data p,
+.user_data2 h2,
+.user_data2 p,
+button {
+  font-family: "UD デジタル 教科書体 NP-B", "Kiwi Maru";
+}
+.user_data h2,
+.user_data2 h2 {
+  margin-bottom: 10px;
+  font-size: 3rem;
+  color: #6b926a;
+}
+
+.user_data p,
+.user_data2 p {
+  font-size: 2.7rem;
+  color: #8fae92;
+}
+
+textarea::placeholder {
+  color: #8fae92;
+}
+
+.user_data__input {
+  background-color: #61886538;
+  border-radius: 20px;
+  border: 2px solid #f8fff883;
+  padding: 5px;
+}
+
+#input-Address {
+  height: 100px;
+}
+
+button {
+  width: 140px;
+  height: 40px;
+  /* background-color: #248738; */
+  color: #739d72;
+  border-radius: 10px;
+  margin-top: 20px;
+  border: 2px solid #739d72;
+  text-align: center;
+  font-size: 13px;
+}
+
+button:hover {
+  color: white;
+  background-color: #739d72;
+  transition: 0.5s;
+}
+
+.serch__bar__button {
+  height: 30px;
+  padding: 0 15px;
+  font-size: 16px;
+  color: #030303;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: auto;
+  margin-bottom: 20px;
+}
+
+.serch__bar__button button:hover {
+  background-color: #84b782;
+}
+
+.wrapper_right_1 {
+  margin-bottom: 15%;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  align-content: space-around; */
+}
+
+.mypage__wrapper {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  background-image: url("../images/feed_border.png");
+  /* background-image: url("../images/home_fream.png"); */
+  /* background-color: #ebf7e1; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Wrapper 设置 */
+.wrapper__left-right {
+  margin: 0 auto;
+  height: 70%;
+  display: flex; /* フレックスボックスを使用 */
+  justify-content: space-between; /* 左右のコンテンツを両端に配置 */
+  align-items: flex-start; /* 上寄せ */
+  padding: 20px;
+  box-sizing: border-box;
+  width: 60%;
+  box-shadow: 5px 5px 5px rgba(44, 44, 44, 0.274);
+  border: 2px solid #f8fff883;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.103);
+}
+
+.mypage__wrapper .wrapper_left {
+  width: 45%; /* 適宜調整 */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper_left_img {
+  width: 350px;
+  height: 350px;
+}
+
+.wrapper_left_img:hover {
+  cursor: pointer;
+}
+
+/* .wrapper_left_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+
+.mypage__wrapper .wrapper_right {
+  width: 55%; /* 適宜調整 */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 左寄せ（変更なし） */
+  text-align: left; /* 追加：テキストを左揃えに */
+  justify-content: flex-start; /* 上寄せ（念のため） */
+  padding-left: 10px; /* 左に少し余白を追加（任意） */
+  /* background-color: #5dd86d; */
+}
+
+.mypage__wrapper .wrapper_right h2,
+.mypage__wrapper .wrapper_right p {
+  text-align: left; /* 追加：h2やpタグも左寄せに */
+  width: 100%; /* 追加：親要素の幅いっぱいにする */
+}
+
+.mypage__wrapper .profile_pic {
+  width: 70%; /* 画像の横幅 */
+  height: 70%; /* 画像の縦幅 */
+  border-radius: 50%; /* 円形にする */
+  object-fit: cover; /* 画像の縦横比を維持しつつ枠内にフィットする感じにするらしい */
+  border: 3px solid #ccc; /* 枠線を追加 */
+  display: block; /* インライン要素をブロック要素に */
+  margin: 0 auto; /* 中央配置 */
+  margin-top: 15%;
+}
+
+/* 背景设置 */
+.mypage__wrapper .background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  object-fit: cover;
+}
+
+.wrapper__change_img {
+  background-color: #739d7241;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* .mypage__wrapper .Login__bd__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+} */
+
+.mypage__wrapper .small__fream {
+  width: auto;
+  height: auto;
+  transform: scale(0.8);
+}
+
+.Login__name__input,
+.Login__pass__input {
+  display: block;
+  width: 360px;
+  height: 60px;
+  margin: 10px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 28px;
+  box-sizing: border-box;
+  background-color: white;
+  color: black;
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.Login__links {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.Login__links a {
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.Login__links a:hover {
+  text-decoration: underline;
+}
+
+form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.Login__links {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #fffefe;
+}
+
+.Login__links:first-child {
+  font-size: 10px;
+}
+
+.Login__links a {
+  color: #fffefe;
+}
+
+.Login__bd__image {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fream {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+form {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 36px;
+  text-shadow: 2px 2px 3px rgba(64, 64, 64, 0.5);
+  text-align: center;
+}
+
+.Login__input {
+  padding: 10px 0;
+}
+
+.contents {
+  margin-left: 110px;
+  font-weight: 600;
+}
+
+.Login__submit {
+  color: #fffefe;
+  background-color: #30857f;
+  box-shadow: 1px 1px 8px 2px rgba(64, 64, 64, 0.3);
+  border-radius: 30px;
+  padding: 20px 80px;
+  font-size: 18px;
+  transition: transform 0.6s ease, opacity 0.4s ease;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.Login__submit:hover {
+  opacity: 0.8;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  cursor: pointer;
+  margin-right: 8px;
+  box-shadow: 1px 1px 5px 2px rgba(64, 64, 64, 0.3);
+  pointer-events: auto;
+}
+
+.check__box {
+  margin-left: 10px;
+}
+
+.check__box label {
+  display: flex;
+  align-items: center;
+}
+
+.Login__name,
+.Login__Pass {
+  display: block;
+  text-align: left;
+  margin-left: 26px;
+}

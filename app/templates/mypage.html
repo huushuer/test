@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}
+マイページ
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/mypage.css') }}">
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include 'navigation.html' %}
+<!-- /header -->
+
+
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+<div class="change-icon" id="change-icon">
+    {# change icon #}
+    <form action="{{url_for('mypage_img_upload')}}" method="POST" enctype="multipart/form-data">
+        <input type="file" accept="image/*" class="input_image" name="uploaded-file">
+        <button type="submit">変更する</button>
+        <button type="button" id="change-icon__cancel">やめる</button>
+    </form>
+</div>
+
+<div class="mypage__wrapper">
+    <!-- <div class="wrapper__change_img">
+    </div> -->
+    <div class="main__title">
+        <h1>マイページ</h1>
+    </div>
+    
+    <div class="wrapper__left-right">
+        <div class="wrapper_left"><!--左段-->
+            <div class="wrapper_left_img">
+                <img src="{{ url_for('static', filename='images/icon/' ~ session.get('icon')) }}" alt=""  class="profile_pic" id="icon-change-appear">
+            </div><!--プロフィール写真-->
+
+            {% if not session.get('child_account') %}
+            <div class="toggle-buttons">
+                <button type="button" id="btn-info" class="user_info_button">ユーザー情報</button>
+                <button type="button" id="btn-edit" class="user_edit_button">プロフィールを編集</button>
+            </div>
+            <button onclick="window.location.href='{{ url_for('child_account_kanri') }}'">子供アカウント管理</button>
+            {% else %}
+            <!-- <p>子供アカウント</p> -->
+            {% endif %}
+                {# エラーでない #}
+                <button type="button" onclick="window.location.href='{{ url_for('ninjin_kanri') }}'">ニンジン管理</button>
+            
+            {#
+            <p><a href="#">子供アカウント管理</a></p>
+            <p><a href="{{url_for('ninjin_kanri')}}">にんじん管理</a></p> 
+            #}
+    
+        </div>
+        <div class="wrapper_right">
+            <div class="wrapper_right_1">
+                <div class="user_data">
+                    <h2 class="#">名前：</h2>
+                    <p class="#">{{ members.F_MemberName }}</p>
+                </div>
+                <div class="user_data">
+                    <h2 class="#">メールアドレス：</h2>
+                    <p class="#">{{ members.F_Email }}</p>
+                </div>
+        
+                <div class="user_data">
+                    <h2 class="#">携帯電話：</h2>
+                    <p class="#">{{ members.F_PhoneNum }}</p>
+                </div>
+        
+                <div class="user_data">
+                    <h2 class="#">住所：</h2>
+                    <p class="#">〒{{ members.F_PostalCode }}</p>
+                    <p class="#">{{ members.F_Address }}</p>
+                </div>
+            </div>
+            {% if not session.get('child_account') %}
+            <div class="wrapper_right_2">
+                <form method="POST" action="{{ url_for('mypage') }}">
+                    <div class = "account_config">
+                        <div class="user_data2">
+                            <h2 class="#">名前：</h2>
+                            <p>
+                                <input type="text" id="input-name" class="user_data__input" value="{{ members.F_MemberName }}" name="F_MemberName">
+                            </p>
+                        </div>
+                        <div class="user_data2">
+                            <h2 class="#">メールアドレス：</h2>
+                            <p>
+                                <input type="text" id="input-Email" class="user_data__input" value="{{ members.F_Email }}" name="F_Email">
+                            </p>
+                        </div>
+                        <div class="user_data2">
+                            <h2 class="#">携帯電話：</h2>
+                            <p>
+                                <input type="tel" id="input-PhoneNum" class="user_data__input" value="{{ members.F_PhoneNum }}"
+                                pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="F_PhoneNum">
+                            </p>
+                            <!-- pattern属性で入力形式の制限をしました -->
+                        </div>
+                        <div class="user_data2">
+                            <h2 class="#">住所：</h2>
+                            <p><input type="text" id="input-PostalCode" class="user_data__input" value="{{ members.F_PostalCode }}" name="F_PostalCode"></p>
+                            <p><textarea type="text" id="input-Address" class="user_data__input" value="{{ members.F_Address }}" name="F_Address">{{ members.F_Address }}</textarea></p>
+                            <button type="submit" class="button_submit">保存</button>
+                            <button id="btn-info" class="button_cancel">キャンセル</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    
+</div>
+
+<!-- JavaScript（表示切り替え） -->
+
+<script>
+document.getElementById('icon-change-appear').addEventListener('click', function(){
+    document.getElementById('change-icon').style.display = 'block'
+})
+document.getElementById('change-icon__cancel').addEventListener('click', function(){
+    document.getElementById('change-icon').style.display = 'none'
+})
+</script>
+{% if not session.get('child_account') %}
+<script>
+document.querySelector('.wrapper_right_1').style.display = 'block'; // ユーザー情報を表示
+document.querySelector('.wrapper_right_2').style.display = 'none'; // 編集フォームを非表示
+document.querySelector('.user_info_button').style.display = 'none';
+document.querySelector('.user_edit_button').style.display = 'block';
+
+document.addEventListener("DOMContentLoaded", function() {
+    // ボタンをクリックしたときに対応する内容を表示/非表示にする
+    document.getElementById('btn-info').addEventListener('click', function() {
+        document.querySelector('.wrapper_right_1').style.display = 'block'; // ユーザー情報を表示
+        document.querySelector('.wrapper_right_2').style.display = 'none'; // 編集フォームを非表示
+        document.querySelector('.user_info_button').style.display = 'none';
+        document.querySelector('.user_edit_button').style.display = 'block';
+    });
+    
+    document.getElementById('btn-edit').addEventListener('click', function() {
+        document.querySelector('.wrapper_right_1').style.display = 'none'; // ユーザー情報を非表示
+        document.querySelector('.wrapper_right_2').style.display = 'block'; // 編集フォームを表示
+        document.querySelector('.user_info_button').style.display = 'block';
+        document.querySelector('.user_edit_button').style.display = 'none';
+    });
+});
+</script>
+{% endif %}
+
+{% endblock %}

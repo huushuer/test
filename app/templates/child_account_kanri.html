@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+子供アカウント管理
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/child_account_kanri.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include 'navigation.html' %}
+<!-- /header -->
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<!-- , child_id = member.F_MemberID -->
+
+<div class="main__title">
+    <h1>子供アカウント管理</h1>
+</div>
+
+<div class="main_wrapper">
+    {% for member in members %}
+    <div class="wrapper_contents">
+        <div>
+            <p><a href="{{ url_for('set_child_session', child_id = member.F_MemberID) }}"><img src="{{ url_for('static', filename='images/icon/' + member.F_icon) }}" alt="" class="profile_pic"></a></p>
+        </div>
+        <div class="F_MemberName">
+            <h2 class="#">{{ member.F_MemberID }}</h2> 
+            <p><a href="{{ url_for('set_child_session', child_id = member.F_MemberID) }}">{{ member.F_MemberName }}</a></p>
+        </div>
+        <div class="F_Carrot">
+            <h2 class="#">にんじん数：{{ member.F_Carrot }}</h2>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊装飾＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="home__wrapper">
+    <div class="items__1"></div>
+    <div class="items__2"></div>
+    <div class="items__3"></div>
+</div>
+<!-- /装飾 -->
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊タイトル＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="map__wrapper">
+</div>
+<!-- /タイトル -->
+
+<!-- /ホームページ -->
+
+<!-- /footer -->
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+サンキュー
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "navigation.html" %}
+<!-- /header -->
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/thankyou.css') }}">
+{% endblock %}
+
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊タイトル＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="map__wrapper">
+    <img src="../static/images/home_fream_up.png" alt="" class="cart__bg" style="pointer-events: none;">
+    <h2>購入完了！</h2>
+    <p>thankyou animal！！</p>
+</div>
+<!-- /タイトル -->
+
+<!-- /ホームページ -->
+
+
+{% endblock %}

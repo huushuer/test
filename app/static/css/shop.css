@@ -1,0 +1,240 @@
+
+body {
+    font-family: 'Kiwi Maru', 'Yu Mincho', 'Hiragino Kaku Gothic ProN', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0fff4;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.top-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.top-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.top-image h1 {
+    font-size: 10em;
+    font-family: 'Kiwi Maru', serif;
+    font-weight: bold;
+    color: #248738;
+    text-shadow: 2px 2px 6px rgb(255, 255, 255), -2px -2px 6px rgb(255, 255, 255);
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+.top-image p {
+    font-size: 2em;
+    font-family: 'Kiwi Maru', serif;
+    color: #67bcdee2;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+.animal-nav {
+    display: grid;
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 10px 20px;
+    border-radius: 20px;
+    align-items: center;
+    width: 8%;
+    min-width: 5%;
+    height: 60%;
+    margin: 0 auto;
+    position: fixed;
+    top: 25%;
+    right: 2%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.animal-nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+    padding: 8px 10px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.animal-nav a.active {
+    background-color: #8BAF91; 
+    color: white;
+    font-weight: bold;
+}
+
+.animal-nav a:hover {
+    background-color: #B0D6A6; 
+}
+
+.series {
+    padding-top: 120px; /* スペース空き */
+    margin-top: -120px;
+}
+
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+.series {
+    margin-bottom: 120px;
+    position: relative;
+}
+
+.series h3 {
+    font-size: 2.5em;
+    font-family: 'Kiwi Maru', 'Arial Rounded MT Bold', sans-serif;
+    color: #260b01e5;
+    margin-bottom: 20px;
+}
+
+.goods-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.dashed-divider {
+    width: 80%;
+    border: none;
+    border-top: 10px dotted #b0c592; 
+    margin: 50px auto; 
+    opacity: 0.7; 
+    border-spacing: 25px;
+}
+
+
+
+
+
+.shop__item {
+    flex: 1 1 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.shop__item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.shop__item img {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.shop__item h2 {
+    font-size: 1.2em;
+    font-family: 'Kiwi Maru', serif;
+    color: #333;
+}
+
+.shop__item p {
+    margin: 10px 0;
+    font-family: 'Kiwi Maru', serif;
+    color: #555;
+}
+
+.shop__item a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Kiwi Maru', serif;
+    font-weight: bold;
+    background-color: #2e8b57;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.shop__item a:hover {
+    background-color: #3cb371;
+    transform: translateY(-3px);
+}
+
+.shop_goods_name {
+    font-size: 5em; 
+    font-weight: bold; 
+}
+
+.shop_p {
+    font-size: 1.5em; 
+    line-height: 1.6; 
+}
+
+
+.bottom-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.panda-container {
+    width: 70%;
+    overflow: hidden; 
+    height: 200px; 
+    position: relative;
+}
+
+.panda-container img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: -100px; 
+    left:200px
+}
+.sheep-container {
+    width: 70%;
+    height: 100px; 
+    position: relative;
+}
+
+.sheep-container img {
+    width: 25%; 
+    height: auto;
+    position: relative;
+    left: -250px; 
+}
+
+.dog-container {
+    width: 100%;
+    overflow: hidden; 
+    height: 300px; 
+    position: relative;
+}
+
+.dog-container img {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    top: 50px; 
+    left:280px
+}

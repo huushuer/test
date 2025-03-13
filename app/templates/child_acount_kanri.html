@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+子供アカウント管理
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "navigation.html" %}
+<!-- /header -->
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<form action="#" id="" method="POST">
+    <div class="#">
+        <p class="#">ユーザー名</p>
+        <input type="text" id="input-name" class="#" value="">
+    </div>
+    <div class="#">
+        <p class="#">携帯電話</p>
+        <input type="tel" id="input-tel" class="#" value="" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}">
+        <!-- pattern属性で入力形式の制限をしました -->
+    </div>
+    <div class="#">
+        <p class="#">住所</p>
+        <p><input type="text" id="input-box" class="#" value=""></p>
+        <p><input type="text" id="input-box" class="#" value=""></p>
+    </div>
+    <div class="#">
+        <button type="submit" class="#">保存</button>
+    </div>
+</form>
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊装飾＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="home__wrapper">
+    <div class="items__1"></div>
+    <div class="items__2"></div>
+    <div class="items__3"></div>
+</div>
+<!-- /装飾 -->
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊タイトル＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<div class="map__wrapper">
+</div>
+<!-- /タイトル -->
+
+<!-- /ホームページ -->
+
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊footer＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "footer.html" %}
+<!-- /footer -->
+{% endblock %}

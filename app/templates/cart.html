@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}
+カート
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "navigation.html" %}
+<!-- /header -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+{% endblock %}
+
+<link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+
+<div class="cart__wrapper">
+    <img src="../static/images/home_fream_up.png" alt="" class="cart__bg" style="pointer-events: none;">
+
+    <div class="cart__contents">
+        <h1>カート</h1>
+        <!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊カート＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+        {% for cart_good in cart_goods %}
+        <form action="{{url_for('cart')}}" , method="POST">
+            <input type="hidden" value="update" name="next">
+            <div class="cart__wrapper">
+                <div class="cart__items__wrapper">
+                    <div class="cart__left">
+                        <div class="item__image">
+                            <img src="{{ url_for('static', filename='images/' ~ cart_good.F_ImageName) }}" alt=""
+                                class="goods__img">
+                        </div>
+                    </div>
+
+                    <div class="cart__right">
+                        <div class="item__name">
+                            <h2>名称：{{ cart_good.F_GoodsName }}</h2>
+                            <input type="hidden" value="{{ cart_good.F_GoodsID }}" name="item_id">
+                        </div>
+                        <div class="item__price">
+                            <h2>単価：￥{{ cart_good.F_GoodsPrice }}</h2>
+                            <input type="hidden" value="update" name="item__price">
+                        </div>
+                        <div class="item__count">
+                            <h2>個数：
+                                <select class="calc_price" id="{{cart_good.F_GoodsPrice}}" name="item_count">
+                                    {% for i in range(0, 100) %}
+                                    {% if i == cart_good.F_GoodsQTY %}
+                                    <option value="{{i}}" id="{{cart_good.F_GoodsPrice}}" selected>{{i}}</option>
+                                    {% else %}
+                                    <option value="{{i}}" id="{{cart_good.F_GoodsPrice}}">{{i}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </h2>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                {% endfor %}
+                <div class="cart__price__wrapper">
+                    <!-- <div class="cart__image">
+                        <img src="" alt="">
+                    </div> -->
+                    <div class="cart__continue">
+                        <a href="{{url_for('shop')}}" class="continue">買い物を続ける</a>
+                    </div>
+                    <div class="cart__sum__price">
+                        {# jquery #}
+                        <h2>合計金額￥：<span id="sum_price"></span>
+                        </h2>
+                    </div>
+
+
+                    <div class="cart__button">
+                        <button type="submit" value="check" name="button">レジに進む</button>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+        // ページ読み込み時に合計金額を計算し、表示する
+        sumSelectedScore();
+
+        $('.calc_price').on('change', function () {
+            sumSelectedScore();
+        });
+    });
+
+    function sumSelectedScore() {
+        let totalScore = 0;
+
+        $('.calc_price').each(function () {
+            const selectedOption = $('option:selected', this);
+            const quantity = parseInt(selectedOption.val(), 10);
+            const price = parseInt(selectedOption.attr('id'), 10);
+            const totalPrice = quantity * price;
+            totalScore += totalPrice;
+        });
+
+        $('#sum_price').text(totalScore);
+    }
+
+</script>
+{% endblock %}

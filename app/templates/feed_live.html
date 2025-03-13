@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/feed_live.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+<header>
+    {% include "navigation.html" %}
+
+</header>
+
+
+<!-- /header -->
+
+<article class="video__wrapper">
+    <h1 class="video__title">Feed_live</h1>
+    <div class="video__image">
+        <img src="{{ url_for('static', filename='images/shop_kapibarax1_bg.png') }}" alt="feed_live">
+        <img src="{{ url_for('static', filename='images/shop_kapibarax1_bg.png') }}" alt="feed_live">
+
+
+    </div>
+    <div class="video__arear">
+        <video id="remoteVideo" autoplay playsinline class="live__video"></video>
+    </div>
+    <div class="live__button">
+
+        <button id="forward"><img src="{{ url_for('static', filename='images/feed_remote_up.png') }}" alt=""></button>
+        <button id="back"><img src="{{ url_for('static', filename='images/feed_remote_down.png') }}" alt=""></button>
+        <button id="left"><img src="{{ url_for('static', filename='images/feed_remote_left.png') }}" alt=""></button>
+        <button id="right"><img src="{{ url_for('static', filename='images/feed_remote_right.png') }}" alt=""></button>
+        <button id="stop"><img style="width: 50px;"
+                src="{{ url_for('static', filename='images/feed_remote_border.png') }}" alt=""></button>
+    </div>
+</article>
+
+
+
+<div class="footer__copyright">
+    <p>
+        <span>
+            &copy;2025 HAL Brian Slice.
+        </span>
+    </p>
+</div>
+
+<script src="{{ url_for('static', filename='js/viewer.js') }}"></script>
+
+<script>
+    document.getElementById("forward").addEventListener("click", function () {
+        fetch("/g");
+    });
+
+    document.getElementById("back").addEventListener("click", function () {
+        fetch("/b");
+    });
+
+    document.getElementById("left").addEventListener("click", function () {
+        fetch("/l");
+    });
+
+    document.getElementById("right").addEventListener("click", function () {
+        fetch("/r");
+    });
+    document.getElementById("stop").addEventListener("click", function () {
+        fetch("/s");
+    });
+</script>
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊footer＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<!-- /footer -->
+{% endblock %}

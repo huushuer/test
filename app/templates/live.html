@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+ライブ配信
+{% endblock %}
+
+{% block content %}
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊header＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "navigation.html" %}
+<!-- /header -->
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ホームページ＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊装飾＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/live.css') }}">
+  <title>ライブ配信サイト</title>
+</head>
+
+<body>
+  <div class="container">
+    <!-- ヘッダー -->
+    <div class="header">
+      <a href="{{url_for('feed')}}">餌やりページへ</a>
+      <div class="logo">Logo</div>
+      <div class="menu">menu ☰</div>
+    </div>
+    <!-- コンテンツ -->
+    <div class="content">
+      <!-- コメント -->
+      <!-- 入力ボックス -->
+      <div class="input__box">
+        <input type="text" placeholder="コメントを入力してください">
+      </div>
+    </div>
+    <!-- ライブスクリーン -->
+    <div class="live__screen">
+      <p>16:9<br>ライブ配信スクリーン</p>
+    </div>
+  </div>
+  <img src="/app/static/images/shop_leaf_sheep.png" alt="Sheep Illustration" class="sheep">
+  </div>
+</body>
+
+</html>
+<!-- /装飾 -->
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊タイトル＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+<!-- ゲーム機ボタン -->
+<div class="d-pad">
+  <button>↑</button>
+  <button class="center"></button>
+  <button>↓</button>
+  <button class="center"></button>
+  <button>←</button>
+  <button class="center"></button>
+  <button>→</button>
+  <button class="center"></button>
+</div>
+
+
+
+<!-- ＊＊＊＊＊＊＊＊＊＊＊＊＊＊footer＊＊＊＊＊＊＊＊＊＊＊＊＊＊ -->
+{% include "footer.html" %}
+<!-- /footer -->
+{% endblock %}
