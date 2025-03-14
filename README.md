@@ -26,6 +26,7 @@ $ pip3 install -r requirements.txt
 $ pip3 install flask_socketio
 $ pip3 install flask_cors
 $ pip3 install constants
+$ python db_create.py
 
 $ python3 run.py
 #  * Serving Flask app 'app.app'
